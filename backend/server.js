@@ -15,7 +15,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://gigflow-frontend-iya8.onrender.com/",
+    origin: process.env.CLIENT_URL,
     credentials: true
   })
 );
