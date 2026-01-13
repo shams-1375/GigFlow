@@ -23,9 +23,11 @@ export default function Register() {
     try {
       await api.post("/auth/createuser", form);
       navigate("/login");
-    } catch (err) {
+    } 
+    catch (err) {
       alert("Registration failed!");
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
   };

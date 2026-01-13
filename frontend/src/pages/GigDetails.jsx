@@ -5,14 +5,14 @@ import BidCard from "../components/BidCard";
 
 export default function GigDetails({ user }) {
   const { id } = useParams();
-
-
   const [gig, setGig] = useState(null);
   const [bids, setBids] = useState([]);
   const [message, setMessage] = useState("");
   const [price, setPrice] = useState("");
 
-  // Fetch gig + bids
+
+
+  // Fetch gig and bids
   const fetchData = async () => {
     try {
       const gigRes = await api.get(`/gigs/${id}`);
@@ -20,7 +20,8 @@ export default function GigDetails({ user }) {
 
       const bidsRes = await api.get(`/bids/gig/${id}`);
       setBids(bidsRes.data);
-    } catch (err) {
+    } 
+    catch (err) {
       console.log("Error loading gig");
     }
   };
@@ -47,6 +48,7 @@ export default function GigDetails({ user }) {
     fetchData();
   };
 
+
   return (
     <div className="p-6 bg-purple-50 min-h-screen">
 
@@ -64,7 +66,7 @@ export default function GigDetails({ user }) {
             {gig.description}
           </p>
 
-          {/* Info Grid */}
+          {/* Info Gig */}
           <div className="grid grid-cols-1 max-w-100 sm:grid-cols-2 gap-4 text-sm">
             <div className="bg-gray-100 p-3 rounded-lg">
               <p className=" text-xl text-gray-500">Budget</p>
@@ -79,7 +81,7 @@ export default function GigDetails({ user }) {
             </div>
           </div>
 
-          {/* Owner */}
+          {/* Owner Details */}
           <div className="flex items-center justify-between border-t pt-3">
             <p className="text-sm text-gray-600">
               Posted By: <span className="font-medium">{gig.ownerId.name}</span>
@@ -93,6 +95,7 @@ export default function GigDetails({ user }) {
       {/* BID FORM */}
       {!isOwner && gig.status === "open" && (
         <div className=" bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-8">
+          
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Place a Bid</h2>
             <p className="text-sm text-gray-500">Submit your proposal for this gig.</p>
@@ -112,28 +115,23 @@ export default function GigDetails({ user }) {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Proposed Price</label>
+
               <div className="relative max-w-50">
-                <input
-                  placeholder="0.00"
-                  type="number"
-                  value={price}
-                  onChange={e => setPrice(e.target.value)}
-                  className="w-full border border-gray-300 p-3 pl-7 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
-                />
+                <input placeholder="0.00" type="number" value={price} onChange={e => setPrice(e.target.value)} className="w-full border border-gray-300 p-3 pl-7 rounded-lg focus:ring-2 focus:ring-p focus:border-transparent outline-none transition-all" />
               </div>
             </div>
 
             <button
               onClick={placeBid}
-              className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-semibold px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg"
-            >
+              className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-semibold px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg" >
               Place Bid
             </button>
+            
           </div>
         </div>
       )}
 
-      {/* BIDS */}
+      {/*ALL BIDS */}
       <div className="bg-white p-6 rounded-xl shadow">
         <h2 className="text-2xl font-bold text-gray-800 mb-1">
           {isOwner ? "Bids Received" : "Recent Bids"}

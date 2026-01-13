@@ -22,7 +22,7 @@ function App() {
       .then(res => {
         if (res.data.user) {
           setIsLoggedIn(true);
-          setCurrentUser(res.data.user); // store logged-in user info
+          setCurrentUser(res.data.user); 
         }
       })
       .finally(() => setLoading(false));

@@ -10,25 +10,25 @@ export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-  if (!email || !password) {
-    alert("Please enter email and password");
-    return;
-  }
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    await api.post("/auth/login", { email, password });
-    setIsLoggedIn(true);
-    navigate("/gigs");
-  } 
-  catch (err) {
-    alert("Login failed!");
-  } 
-  finally {
-    setLoading(false);
-  }
-};
+    try {
+      await api.post("/auth/login", { email, password });
+      setIsLoggedIn(true);
+      navigate("/gigs");
+    }
+    catch (err) {
+      alert("Login failed!");
+    }
+    finally {
+      setLoading(false);
+    }
+  };
 
 
   return (
@@ -49,7 +49,6 @@ export default function Login({ setIsLoggedIn }) {
 
         <p className="text-center text-purple-600">
           Don’t have an account?{" "}
-
           <Link className="underline font-semibold" to="/register">
             Create one
           </Link>

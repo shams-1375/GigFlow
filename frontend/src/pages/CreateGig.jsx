@@ -3,6 +3,7 @@ import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateGig() {
+  
   const [form, setForm] = useState({});
   const navigate = useNavigate();
 
@@ -10,7 +11,8 @@ export default function CreateGig() {
     try {
       await api.post("/gigs", form);
       navigate("/gigs");
-    } catch (err) {
+    } 
+    catch (err) {
       alert("Failed to create gig");
     }
   };

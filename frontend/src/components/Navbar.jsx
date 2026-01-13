@@ -5,11 +5,13 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
+    
     try {
       await api.post("/auth/logout");
       setIsLoggedIn(false);
       navigate("/login");
-    } catch (err) {
+    }
+     catch (err) {
       console.log("Logout failed", err);
     }
   };

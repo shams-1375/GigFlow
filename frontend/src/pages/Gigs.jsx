@@ -18,7 +18,8 @@ export default function Gigs({ currentUser }) {
   try {
     await api.delete(`/gigs/${gigId}`);
     setGigs(prev => prev.filter(g => g._id !== gigId));
-  } catch (err) {
+  }
+   catch (err) {
     alert("Failed to delete gig");
   }
 };
@@ -37,8 +38,7 @@ export default function Gigs({ currentUser }) {
           placeholder="Search gigs by title..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full md:w-1/2 border border-purple-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
-        />
+          className="w-full md:w-1/2 border border-purple-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400" />
       </div>
 
       {/* GIG LIST */}
