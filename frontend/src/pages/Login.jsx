@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function Login({ setIsLoggedIn }) {
+export default function Login({ setIsLoggedIn, setCurrentUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false)
@@ -19,6 +19,7 @@ export default function Login({ setIsLoggedIn }) {
 
     try {
       await api.post("/auth/login", { email, password });
+      const res = await api.get("/auth/me");
       setIsLoggedIn(true);
       navigate("/gigs");
     }

@@ -36,7 +36,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={isLoggedIn ? <Navigate to="/gigs" /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/my-gigs" element={isLoggedIn ? <MyGigs currentUser={currentUser} /> : <Navigate to="/login" />} />
         <Route path="/gigs" element={isLoggedIn ? <Gigs currentUser={currentUser} /> : <Navigate to="/login" />} />

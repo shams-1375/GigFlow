@@ -3,8 +3,8 @@ import { Trash2 } from "lucide-react";
 
 export default function GigCard({ gig, user, onDelete }) {
 
-  const isOwner =
-    user && gig.ownerId && user._id === gig.ownerId._id;
+const isOwner = user && gig.ownerId && 
+  (user._id === (gig.ownerId._id || gig.ownerId));
 
   const isAssigned = gig.status === "assigned";
 
